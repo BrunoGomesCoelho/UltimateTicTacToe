@@ -1,5 +1,6 @@
-#!/usr/bin/python
-#-*- coding: utf-8 -*-
+# !/usr/bin/python
+# -*- coding: utf-8 -*-
+
 
 class Game:
 	def __init__(self):
@@ -10,6 +11,5 @@ class Game:
 	def init(self, ):
 		pass
 
-	def print(self, ):
+	def __str__(self):
 		pass
-

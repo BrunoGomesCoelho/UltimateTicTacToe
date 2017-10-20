@@ -1,5 +1,6 @@
-#!/usr/bin/python
-#-*- coding: utf-8 -*-
+# !/usr/bin/python
+# -*- coding: utf-8 -*-
+
 
 class TicTacBoard:
 	def __init__(self):
@@ -9,4 +10,3 @@ class TicTacBoard:
 
 	def move(self, piece, num):
 		pass
-

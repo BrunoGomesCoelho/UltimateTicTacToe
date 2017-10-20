@@ -1,5 +1,6 @@
-#!/usr/bin/python
-#-*- coding: utf-8 -*-
+# !/usr/bin/python
+# -*- coding: utf-8 -*-
+
 
 class GameBoard:
 	def __init__(self):
@@ -7,12 +8,11 @@ class GameBoard:
 		self.has_winner = None
 		self.winner = None
 
-	def get_winner(self, ):
+	def get_winner(self):
 		pass
 
 	def add_move(self, piece, tic_tac_board, pos):
 		pass
 
-	def print(self, ):
+	def __str__(self):
 		pass
-
