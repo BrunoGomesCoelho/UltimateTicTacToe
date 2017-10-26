@@ -1,19 +1,19 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-from TicTacBoard import TicTacBoard
+from Board import Board
 
 
-class GameBoard:
+class GameBoard(Board):
 	def __init__(self):
-		self.is_full = None
-		self.has_winner = None
-		self.winner = None
-		self.game_board = [TicTacBoard() for _ in range(9)]
+		super(GameBoard, self).__init__()
 
-	def get_winner(self):
-		pass
+	def win_function(self, piece):
+		return super().check_win(lambda x: x is not None and x.winner == piece, piece)
 
 	def add_move(self, piece, tic_tac_board, pos):
+		pass
+
+	def check_winner(self):
 		pass
 
 	def __str__(self):
