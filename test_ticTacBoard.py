@@ -30,21 +30,25 @@ class TestTicTacBoard(object):
 			a.valid_move(7)
 
 	def test_check_win_row_win(self):
+		piece = "X"
 		a = tbb()
-		a.board = [None, None, None, "X", "X", "X", None, None, None]
-		assert a.check_win("X") and a.winner == "X" and a.has_winner
+		a.board = [None, None, None, piece, piece, piece, None, None, None]
+		assert a.check_winner(piece) and a.winner == piece and a.has_winner
 
 	def test_check_win_col_win(self):
+		piece = "O"
 		a = tbb()
-		a.board = ["O", None, None] + ["O", None, None] + ["O", None, None]
-		assert a.check_win("O") and a.winner == "O" and a.has_winner
+		a.board = [piece, None, None] + [piece, None, None] + [piece, None, None]
+		assert a.check_winner(piece) and a.winner == piece and a.has_winner
 
-	def test_check_win_main_digonal(self):
+	def test_check_win_main_diagonal(self):
+		piece = "X"
 		a = tbb()
-		a.board = ["X", None, None] + [None, "X", None] + [None, None, "X"]
-		assert a.check_win("X") and a.winner == "X" and a.has_winner
+		a.board = [piece, None, None] + [None, piece, None] + [None, None, piece]
+		assert a.check_winner(piece) and a.winner == piece and a.has_winner
 
 	def test_check_win_second_diagonal(self):
+		piece = "O"
 		a = tbb()
-		a.board = ["X", None, None] + [None, "X", None] + [None, None, "X"]
-		assert a.check_win("X") and a.winner == "X" and a.has_winner
+		a.board = [piece, None, None] + [None, piece, None] + [None, None, piece]
+		assert a.check_winner(piece) and a.winner == piece and a.has_winner
