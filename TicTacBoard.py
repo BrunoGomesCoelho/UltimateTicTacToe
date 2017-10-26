@@ -4,7 +4,7 @@
 
 class TicTacBoard:
 	def __init__(self):
-		self.board = []*9
+		self.board = [None]*9
 		self.is_full = None
 		self.has_winner = None
 		self.winner = None
