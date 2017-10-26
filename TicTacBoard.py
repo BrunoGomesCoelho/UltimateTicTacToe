@@ -8,7 +8,7 @@ class TicTacBoard(Board):
 		super(TicTacBoard, self).__init__()
 
 	def check_winner(self, piece):
-		return super().check_winner(lambda x: x == piece, piece)
+		return super().check_function_winner(lambda x: x == piece, piece)
 
 	def valid_move(self, move):
 		if move < 0 or move > 8:
@@ -25,6 +25,6 @@ class TicTacBoard(Board):
 			print(Exception)
 		if self.valid_move(num):
 			self.board[num] = piece
-			self.check_win(num)
+			self.check_winner(piece)
 
 

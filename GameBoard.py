@@ -5,15 +5,12 @@ from Board import Board
 
 class GameBoard(Board):
 	def __init__(self):
-		super(GameBoard, self).__init__()
+		super(Board, self).__init__()
 
 	def check_winner(self, piece):
-		return super().check_win(lambda x: x is not None and x.winner == piece, piece)
+		return super().check_function_winner(lambda x: x is not None and x.winner == piece, piece)
 
 	def add_move(self, piece, tic_tac_board, pos):
-		pass
-
-	def check_winner(self):
 		pass
 
 	def __str__(self):

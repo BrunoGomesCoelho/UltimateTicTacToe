@@ -9,7 +9,7 @@ class Board:
 		self.has_winner = None
 		self.winner = None
 
-	def check_winner(self, func, winner):
+	def check_function_winner(self, func, winner):
 			row_count = col_count = diag1_count = diag2_count = 0
 
 			for i in range(3):
