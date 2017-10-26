@@ -42,4 +42,9 @@ class TicTacBoard:
 			if self.board[i*2 + 2] == piece:    # checks secondary diagonal
 				diag2_count += 1
 
-		return max((row_count, col_count, diag1_count, diag2_count)) >= 3
+		if max((row_count, col_count, diag1_count, diag2_count)) >= 3:
+			self.has_winner = True
+			self.winner = piece
+			return True
+		else:
+			return False
