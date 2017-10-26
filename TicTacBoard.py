@@ -10,21 +10,11 @@ class TicTacBoard(Board):
 	def check_winner(self, piece):
 		return super().check_function_winner(lambda x: x == piece, piece)
 
-	def valid_move(self, move):
-		if move < 0 or move > 8:
-			raise IndexError("Piece out of bounds")
-		if self.board[move] is not None:
-			raise ValueError("Position already filled in")
-		else:
-			return True
-
-	def move(self, piece, num):
-		try:
-			self.valid_move(num)
-		except IndexError or ValueError:
-			print(Exception)
-		if self.valid_move(num):
-			self.board[num] = piece
-			self.check_winner(piece)
+	def move(self, piece, pos):
+		super().valid_pos(pos)
+		if self.board[pos] is not None:
+			raise ValueError("Position already taken!")
+		self.board[pos] = piece
+		self.check_winner(piece)
 
 
