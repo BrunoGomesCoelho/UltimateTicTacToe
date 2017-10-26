@@ -17,7 +17,5 @@ class TestBoard(object):
 
 	def test_valid_pos_valid(self):
 		b = Board()
-		test = True
 		for i in range(9):
-			test = test and b.valid_pos(i)
-		assert test
+			b.valid_pos(i)
