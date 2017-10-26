@@ -29,22 +29,22 @@ class TestTicTacBoard(object):
 			a.board = ["O"] * 9
 			a.valid_move(7)
 
-	def test_check_winner_row_win(self):
+	def test_check_win_row_win(self):
 		a = tbb()
 		a.board = [None, None, None, "X", "X", "X", None, None, None]
 		assert a.check_win("X") and a.winner == "X" and a.has_winner
 
-	def test_check_winner_col_win(self):
+	def test_check_win_col_win(self):
 		a = tbb()
 		a.board = ["O", None, None] + ["O", None, None] + ["O", None, None]
 		assert a.check_win("O") and a.winner == "O" and a.has_winner
 
-	def test_check_winner_main_digonal(self):
+	def test_check_win_main_digonal(self):
 		a = tbb()
 		a.board = ["X", None, None] + [None, "X", None] + [None, None, "X"]
 		assert a.check_win("X") and a.winner == "X" and a.has_winner
 
-	def test_check_winner_second_diagonal(self):
+	def test_check_win_second_diagonal(self):
 		a = tbb()
 		a.board = ["X", None, None] + [None, "X", None] + [None, None, "X"]
 		assert a.check_win("X") and a.winner == "X" and a.has_winner
