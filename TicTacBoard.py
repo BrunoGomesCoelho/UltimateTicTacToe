@@ -30,17 +30,15 @@ class TicTacBoard:
 		row_count = col_count = diag1_count = diag2_count = 0
 
 		for i in range(3):
+			if self.board[i*4] == piece:    # checks main diagonal
+				diag1_count += 1
+			if self.board[i*2 + 2] == piece:    # checks secondary diagonal
+				diag2_count += 1
 			for j in range(3):
 				if self.board[i*3 + j] == piece:    # checks rows
 					row_count += 1
 				if self.board[j + 3 * i] == piece:  # checks cols
 					col_count += 1
-
-		for i in range(3):
-			if self.board[i*4] == piece:    # checks main diagonal
-				diag1_count += 1
-			if self.board[i*2 + 2] == piece:    # checks secondary diagonal
-				diag2_count += 1
 
 		if max((row_count, col_count, diag1_count, diag2_count)) >= 3:
 			self.has_winner = True
