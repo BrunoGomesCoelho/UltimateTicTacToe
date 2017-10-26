@@ -7,7 +7,7 @@ class GameBoard(Board):
 	def __init__(self):
 		super(GameBoard, self).__init__()
 
-	def win_function(self, piece):
+	def check_winner(self, piece):
 		return super().check_win(lambda x: x is not None and x.winner == piece, piece)
 
 	def add_move(self, piece, tic_tac_board, pos):
