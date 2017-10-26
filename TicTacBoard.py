@@ -1,13 +1,14 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
+from Board import Board
 
 
-class TicTacBoard:
+class TicTacBoard(Board):
 	def __init__(self):
-		self.board = [None]*9
-		self.is_full = None
-		self.has_winner = None
-		self.winner = None
+		super(TicTacBoard, self).__init__()
+
+	def check_winner(self, piece):
+		return super().check_winner(lambda x: x == piece, piece)
 
 	def valid_move(self, move):
 		if move < 0 or move > 8:
@@ -26,23 +27,4 @@ class TicTacBoard:
 			self.board[num] = piece
 			self.check_win(num)
 
-	def check_win(self, piece):
-		row_count = col_count = diag1_count = diag2_count = 0
 
-		for i in range(3):
-			if self.board[i*4] == piece:    # checks main diagonal
-				diag1_count += 1
-			if self.board[i*2 + 2] == piece:    # checks secondary diagonal
-				diag2_count += 1
-			for j in range(3):
-				if self.board[i*3 + j] == piece:    # checks rows
-					row_count += 1
-				if self.board[j + 3 * i] == piece:  # checks cols
-					col_count += 1
-
-		if max((row_count, col_count, diag1_count, diag2_count)) >= 3:
-			self.has_winner = True
-			self.winner = piece
-			return True
-		else:
-			return False
