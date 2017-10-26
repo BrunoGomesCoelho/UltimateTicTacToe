@@ -31,20 +31,20 @@ class TestTicTacBoard(object):
 
 	def test_check_winner_row_win(self):
 		a = tbb()
-		a.board = [] * 3 + ["X", "X", "X"] + [] * 3
-		assert a.check_win("X", 2) and a.winner == "X" and a.has_winner
+		a.board = [None, None, None, "X", "X", "X", None, None, None]
+		assert a.check_win("X") and a.winner == "X" and a.has_winner
 
 	def test_check_winner_col_win(self):
 		a = tbb()
 		a.board = ["O", None, None] + ["O", None, None] + ["O", None, None]
-		assert a.check_win("O", 6) and a.winner == "O" and a.has_winner
+		assert a.check_win("O") and a.winner == "O" and a.has_winner
 
 	def test_check_winner_main_digonal(self):
 		a = tbb()
 		a.board = ["X", None, None] + [None, "X", None] + [None, None, "X"]
-		assert a.check_win("X", 8) and a.winner == "X" and a.has_winner
+		assert a.check_win("X") and a.winner == "X" and a.has_winner
 
 	def test_check_winner_second_diagonal(self):
 		a = tbb()
 		a.board = ["X", None, None] + [None, "X", None] + [None, None, "X"]
-		assert a.check_win("X", 8) and a.winner == "X" and a.has_winner
+		assert a.check_win("X") and a.winner == "X" and a.has_winner
