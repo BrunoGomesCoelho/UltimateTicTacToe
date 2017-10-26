@@ -29,3 +29,8 @@ class Board:
 				return True
 			else:
 				return False
+
+	@staticmethod
+	def valid_pos(pos):
+		if pos < 0 or pos > 8:
+			raise IndexError("Position out of bounds for board.")
