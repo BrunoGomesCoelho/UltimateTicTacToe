@@ -22,7 +22,7 @@ def main():
 
         while game:
             game.next_move()
-            print(game)
+            game.print()
 
         game.print_results()
         play_again = True if input(MESSAGE_PLAY_AGAIN).rsplit() == "y" else False

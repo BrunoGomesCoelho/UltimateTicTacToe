@@ -10,8 +10,8 @@ class TicTacBoard(Board):
     """
     def __init__(self):
         super(TicTacBoard, self).__init__()
-        for i in range(9):
-            self.board[i] = i
+        for idx, _ in enumerate(self.board):
+            self.board[idx] = " "
 
     def check_winner(self, piece):
         return super().check_function_winner(lambda x: x == piece, piece)
@@ -23,8 +23,19 @@ class TicTacBoard(Board):
         self.board[pos] = piece
         self.check_winner(piece)
 
-    def __str__(self):
-        for row in range(3):
-            print(" ", end="")
-            print(*self.board[row*3:row*3+3], sep=" | ")
-        return ""
+    def print_line(self, line, last=False):
+        """
+        Prints a single a line of the board. Lines are 0 indexed (0, 1 or 2)
+        """
+        string_line = ""
+        print(*self.board[line*3:line*3 + 3], sep="|", end="")
+        if not last:
+            print("  |  ", end="")
+
+    def test(self):
+        # TODO: Remove before going into production
+        for i in [0, 3, 4, 8]:
+            self.board[i] = "X"
+        for i in [1, 2, 6]:
+            self.board[i] = "O"
+

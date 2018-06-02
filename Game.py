@@ -1,7 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import TicTacBoard
+import GameBoard
 import Player
 
 PLAYER_ONE = 0
@@ -28,24 +28,9 @@ class Game:
         pass
 
 
-    def __str__(self):
-        print('=========== Game Board ===========')
-        print(TicTacBoard.TicTacBoard())
+    def print(self):
+        game_board = GameBoard.GameBoard()
+        game_board.test()
+        game_board.print()
 
         return ""
-
-        for i in range(9):
-            if i > 0 and i % 3 == 0:
-                print()
-            for j in range(9):
-                if j > 0 and j % 3 == 0:
-                    print(" " + "-", end="")
-                else:
-                    print("-", end="")
-            print()
-        print("==================================")
-
-        print("=========== Block Status =========")
-        for i in range(0, 9, 3):
-            print("-" + " " + "-" + " " + "-")
-        print("==================================")
