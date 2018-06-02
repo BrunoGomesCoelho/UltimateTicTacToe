@@ -16,21 +16,34 @@ class Game:
 
         self.players = [Player.Player(*player_one), Player.Player(*player_two)]
         self.next_turn = PLAYER_ONE
+        self.game_board = GameBoard.GameBoard()
+
 
     def __bool__(self):
         return self.is_running
 
+
     def next_move(self):
         print(MESSAGE_TURN % (self.next_turn + 1))
+
+        while True:
+            tic_tac_board, pos = map(int, input("Please enter board and position: ").split())
+            try:
+                self.game_board.move(self.players[self.next_turn].piece, tic_tac_board, pos)
+                print("Move added!\n\n")
+                break
+            except IndexError as error:
+                print(error)
+            except ValueError as error:
+                print(error)
+
         self.is_running = False
+
 
     def print_results(self):
         pass
 
 
     def print(self):
-        game_board = GameBoard.GameBoard()
-        game_board.test()
-        game_board.print()
-
-        return ""
+        self.game_board.test()
+        self.game_board.print()

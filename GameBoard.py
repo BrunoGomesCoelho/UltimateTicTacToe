@@ -17,8 +17,9 @@ class GameBoard(Board):
     def check_winner(self, piece):
         return super().check_function_winner(lambda x: x is not None and x.winner == piece, piece)
 
-    def add_move(self, piece, tic_tac_board, pos):
-        pass
+    def move(self, piece, tic_tac_board, pos):
+        self.valid_pos(tic_tac_board)
+        self.board[tic_tac_board].move(piece, pos)
 
     def test(self):
         # TODO: Remove before going into production
