@@ -4,6 +4,9 @@ from Board import Board
 
 
 class GameBoard(Board):
+    """
+    Represents the main game board
+    """
     def __init__(self):
         super().__init__()
 

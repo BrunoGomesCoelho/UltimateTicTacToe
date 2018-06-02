@@ -4,6 +4,9 @@ from Board import Board
 
 
 class TicTacBoard(Board):
+    """
+    Represents a single TicTac board.
+    """
     def __init__(self):
         super(TicTacBoard, self).__init__()
 

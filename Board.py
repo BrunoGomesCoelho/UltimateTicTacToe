@@ -3,6 +3,9 @@
 
 
 class Board:
+    """
+    Helper class to represent both a TicTacBoard and the main board
+    """
     def __init__(self):
         self.board = [None]*9
         self.is_full = None
@@ -10,6 +13,10 @@ class Board:
         self.winner = None
 
     def check_function_winner(self, func, winner):
+        """
+        Checks for a winner.
+        'func' should be a function implemented by TicTacBoard and GameBoard
+        """
         row_count = col_count = diag1_count = diag2_count = 0
 
         for i in range(3):
@@ -32,5 +39,8 @@ class Board:
 
     @staticmethod
     def valid_pos(pos):
+        """
+        Checks if a given posisition is numericly valid
+        """
         if pos < 0 or pos > 8:
             raise IndexError("Position out of bounds for board.")
