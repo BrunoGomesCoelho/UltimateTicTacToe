@@ -5,18 +5,17 @@ import GameBoard
 import Player
 
 PLAYER_ONE = 0
-PLANER_TWO = 1
+PLAYER_TWO = 1
 
 MESSAGE_TURN = "Your turn player %d"
 
 class Game:
     def __init__(self, player_one, player_two):
         self.winner = None
-        self.next_turn = None
+        self.next_turn = PLAYER_ONE
         self.is_running = True
 
         self.players = [Player.Player(*player_one), Player.Player(*player_two)]
-        self.next_turn = PLAYER_ONE
         self.game_board = GameBoard.GameBoard()
 
 
