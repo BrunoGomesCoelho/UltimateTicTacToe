@@ -11,6 +11,7 @@ MESSAGE_TURN = "Your turn player %d"
 
 class Game:
     def __init__(self, player_one, player_two):
+        self.winner = None
         self.next_turn = None
         self.is_running = True
 
@@ -37,7 +38,9 @@ class Game:
             except ValueError as error:
                 print(error)
 
-        self.is_running = False
+        if self.game_board.check_winner(self.players[self.next_turn].piece):
+            self.winner = self.next_turn
+            self.is_running = False
 
 
     def print_results(self):

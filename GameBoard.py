@@ -28,11 +28,11 @@ class GameBoard(Board):
 
     def print(self):
         print("="*7 + " Game Board " + "="*7 + "\n\n")
-        for _ in range(3):
+        for row in range(3):
             print("="*26)
             for line in range(3):
-                for tic_tac_board in range(3):
-                    if tic_tac_board == 2:
+                for tic_tac_board in range(row*3, row*3 +3):
+                    if tic_tac_board == row*3+2:
                         self.board[tic_tac_board].print_line(line, last=True)
                     else:
                         self.board[tic_tac_board].print_line(line, last=False)

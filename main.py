@@ -10,7 +10,7 @@ def get_name(player_id):
     name = input("Please write your name player %d: " % player_id)
     piece = PIECES[player_id - 1]
     print("Ok", name, "you will be '%c'!\n" % piece)
-    return (name, PIECES)
+    return (name, piece)
 
 def main():
     player_one = get_name(player_id=1)
