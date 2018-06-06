@@ -41,12 +41,6 @@ class GameBoard(Board):
         return is_full
 
 
-
-    def test(self):
-        # TODO: Remove before going into production
-        for tic_tac_board in self.board:
-            tic_tac_board.test()
-
     def print(self):
         print("="*7 + " Game Board " + "="*7 + "\n\n")
         for row in range(3):

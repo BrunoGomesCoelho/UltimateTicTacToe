@@ -8,6 +8,8 @@ PLAYER_ONE = 0
 PLAYER_TWO = 1
 
 MESSAGE_TURN = "Your turn player %d"
+MESSAGE_FREE_TURN = "You get to choose the board you will play on!"
+MESSAGE_GAVE_FREE_TURN = "Your oponent will get to pick his board next turn!"
 
 TIE = None
 
@@ -33,22 +35,25 @@ class Game:
         while True:
             print(MESSAGE_TURN % (self.next_turn + 1))
             tic_tac_board = self.last_board
-            if self.choose_board: # Update tic_tac_board
-                tic_tac_board, pos = map(int, input("Please enter board and position: ").split())
-            else:
-                pos = map(int, input(
-                    "Please enter position for board %d: " % self.last_board).split())
 
             # Checks if input is valid
             try:
+                if self.choose_board:
+                    print(MESSAGE_FREE_TURN)
+                    tic_tac_board, pos = map(int,
+                                             input("Please enter board and position: ").split())
+                else:
+                    pos = int(input("Please enter position for board %d: " % self.last_board))
+
                 has_winner = self.game_board.move(piece, tic_tac_board, pos)
                 print("Move added!\n\n")
                 self.last_board = tic_tac_board
                 break
-            except IndexError as error:
+            except (IndexError, ValueError) as error:
                 print(error)
-            except ValueError as error:
-                print(error)
+            except Exception:
+                print("Invalid input, try again")
+
 
         if has_winner:
             self.winner = self.next_turn
@@ -58,7 +63,16 @@ class Game:
             self.winner = TIE
             self.is_running = False
 
-        self.next_turn = PLAYER_TWO if self.next_turn == PLAYER_ONE else PLAYER_ONE
+        # Game goes on!
+        else:
+            if not self.game_board.board[pos].is_full:
+                self.choose_board = False
+                self.last_board = pos
+            else:
+                print(MESSAGE_GAVE_FREE_TURN)
+                self.choose_board = True
+
+            self.next_turn = PLAYER_TWO if self.next_turn == PLAYER_ONE else PLAYER_ONE
 
     def print_results(self):
         if self.winner != TIE:
@@ -69,5 +83,4 @@ class Game:
 
 
     def print(self):
-        self.game_board.test()
         self.game_board.print()

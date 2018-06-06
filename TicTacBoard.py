@@ -56,12 +56,3 @@ class TicTacBoard(Board):
         print(*self.board[line*3:line*3 + 3], sep="|", end="")
         if not last:
             print("  |  ", end="")
-
-
-    def test(self):
-        # TODO: Remove before going into production
-        return
-        for i in [0, 3, 4, 8]:
-            self.board[i] = "X"
-        for i in [1, 2, 6]:
-            self.board[i] = "O"
