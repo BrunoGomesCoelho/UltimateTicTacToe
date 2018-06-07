@@ -24,6 +24,11 @@ class Game:
         self.players = [Player.Player(*player_one), Player.Player(*player_two)]
         self.game_board = GameBoard.GameBoard()
 
+        # TODO: Delete later
+        self.game_board.board[0].board[0] = self.game_board.board[0].board[3] \
+                = "X"
+                #= self.game_board.board[0].board[6] = "X"
+
 
     def __bool__(self):
         return self.is_running
@@ -40,13 +45,12 @@ class Game:
             try:
                 if self.choose_board:
                     print(MESSAGE_FREE_TURN)
-                    tic_tac_board, pos = map(int,
+                    tic_tac_board, pos = map(lambda x: int(x) - 1,
                                              input("Please enter board and position: ").split())
                 else:
                     pos = int(input("Please enter position for board %d: " % self.last_board))
 
                 has_winner = self.game_board.move(piece, tic_tac_board, pos)
-                print("Move added!\n\n")
                 self.last_board = tic_tac_board
                 break
             except (IndexError, ValueError) as error:

@@ -5,6 +5,16 @@ from Board import Board
 
 BLANK = "_"
 
+BIG_OUTPUT = {
+    "X": ["\\", " ", "/", \
+          " ", "X", " ", \
+          "/", " ", "\\"],
+
+    "O": ["┌", "─", "┐", \
+         "│", " ", "│", \
+         "└", "─", "┘"]
+}
+
 class TicTacBoard(Board):
     """
     Represents a single TicTac board.
@@ -33,6 +43,7 @@ class TicTacBoard(Board):
             self.game_over = True
             self.has_winner = True
             self.winner = piece
+            print("\nWell done, board", pos+1, "won!!!\n\n")
         else:
             self.check_full()
 
@@ -53,6 +64,9 @@ class TicTacBoard(Board):
         """
         Prints a single a line of the board. Lines are 0 indexed (0, 1 or 2)
         """
-        print(*self.board[line*3:line*3 + 3], sep="|", end="")
+        if self.has_winner:
+            print(" ", *BIG_OUTPUT[self.winner][line*3:line*3+3], sep="", end=" ")
+        else:
+            print(*self.board[line*3:line*3 + 3], sep="|", end="")
         if not last:
             print("  |  ", end="")
