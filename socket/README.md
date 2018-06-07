@@ -14,14 +14,12 @@ To run the application simply get the server up
 
 ```
 python3 serverEcho.py
-
 ```
 
 Then use the `clientEcho.py` to send mesages to the server
 
 ```
 python3 clientEcho.py
-
 ```
 
 
@@ -32,7 +30,6 @@ to)
 
 ```
 nc -l -p 3000
-
 ```
 
 
@@ -41,7 +38,6 @@ Then execute the client
 
 ```
 python3 clientEcho.py
-
 ```
 
 In this case, as `clientEcho.py` expects a response from the server, it
