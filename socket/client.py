@@ -25,8 +25,22 @@ class Client():
         t.start()
 
     def play(self):
+        if(self.player == 1):
+            # wait for permission
+            permission = self.sock.recv(1024).decode()
+            # send first play
+            #
+
         while(not self.game_finished):
-            pass
+            # receive play
+            message = self.sock.recv(1024).decode()
+            # compute play
+            #
+            # send my play
+            #
+
+
+
         print('Game ended.')
 
     def stop(self):

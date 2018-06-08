@@ -30,13 +30,20 @@ class GameServer():
     def play(self):
         print('in')
         while not self.game_finished:
-            pass
+            # send permission to play
+            self.player1.send('.'.encode())
             # get player1 play
+            play1 = self.player1.recv(1024).decode()
             # validate (valid play or game finished)
-            # send player1's play to player2
+            #
+            # send play1 to player2
+            #
             # get player2 play
+            play2 = self.player2.recv(1024).decode()
             # validate (valid play or game finished)
-            # send plauer2's play to player1
+            #
+            # send play2 to player1
+            #
 
     def stop(self):
         self.game_finished = True
