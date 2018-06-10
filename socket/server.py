@@ -1,5 +1,4 @@
-import socket, sys
-import threading
+import socket, sys, threading
 
 """
 The server waits for connections and handles games by controlling which
@@ -18,11 +17,10 @@ class GameServer():
         self.sock.listen()
 
         (self.player1, addr) = self.sock.accept()
-        self.player1.send('Waiting for player 2\n'.encode())
+        self.player1.send('1'.encode())
 
         (self.player2, addr) = self.sock.accept()
-        self.player1.send('Game starting\n'.encode())
-        self.player2.send('Game starting\n'.encode())
+        self.player2.send('2'.encode())
 
         t = threading.Thread(target=self.play)
         t.start()
@@ -32,11 +30,20 @@ class GameServer():
     def play(self):
         print('in')
         while not self.game_finished:
-            pass
+            # send permission to play
+            self.player1.send('.'.encode())
             # get player1 play
+            play1 = self.player1.recv(1024).decode()
             # validate (valid play or game finished)
+            #
+            # send play1 to player2
+            #
             # get player2 play
+            play2 = self.player2.recv(1024).decode()
             # validate (valid play or game finished)
+            #
+            # send play2 to player1
+            #
 
     def stop(self):
         self.game_finished = True
