@@ -46,8 +46,6 @@ class Client():
             self.game.print()
             self.sock.send(pickle.dumps(self.game))
 
-
-
         print('Game ended.')
 
     def stop(self):
@@ -56,4 +54,3 @@ class Client():
 if __name__ == "__main__":
     client = Client(str(sys.argv[1]), int(sys.argv[2]))
     client.start()
-    client.play()

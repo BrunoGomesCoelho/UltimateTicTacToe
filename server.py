@@ -29,12 +29,10 @@ class GameServer():
         t = threading.Thread(target=self.play)
         t.start()
 
-        print('out')
 
     def play(self):
         # send permission to play
         self.player1.send('.'.encode())
-        print('in')
 
         while self.game:
             # get player1 play
