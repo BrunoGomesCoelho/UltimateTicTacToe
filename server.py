@@ -1,4 +1,6 @@
 import socket, sys, threading
+import Game
+import pickle
 
 """
 The server waits for connections and handles games by controlling which
@@ -6,10 +8,10 @@ client should play in each turn
 """
 
 class GameServer():
-    def __init__(self, host, port):
+    def __init__(self, host, port, game):
         self.host = host
         self.port = port
-        self.game_finished = False
+        self.game = game
 
     def start(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,9 +20,11 @@ class GameServer():
 
         (self.player1, addr) = self.sock.accept()
         self.player1.send('1'.encode())
+        self.player1.send(pickle.dumps(self.game))
 
         (self.player2, addr) = self.sock.accept()
         self.player2.send('2'.encode())
+        self.player2.send(pickle.dumps(self.game))
 
         t = threading.Thread(target=self.play)
         t.start()
@@ -28,25 +32,24 @@ class GameServer():
         print('out')
 
     def play(self):
+        # send permission to play
+        self.player1.send('.'.encode())
         print('in')
-        while not self.game_finished:
-            # send permission to play
-            self.player1.send('.'.encode())
+
+        while self.game:
             # get player1 play
-            play1 = self.player1.recv(1024).decode()
-            # validate (valid play or game finished)
-            #
+            self.game = pickle.loads(self.player1.recv(4096))
             # send play1 to player2
-            #
+            self.player2.send(pickle.dumps(self.game))
             # get player2 play
-            play2 = self.player2.recv(1024).decode()
-            # validate (valid play or game finished)
-            #
+            self.game = pickle.loads(self.player2.recv(4096))
             # send play2 to player1
-            #
+            self.player1.send(pickle.dumps(self.game))
+
+        self.game.print_results()
+        self.stop()
 
     def stop(self):
-        self.game_finished = True
         self.player1.close()
         self.player2.close()
 
@@ -55,4 +58,5 @@ class GameServer():
 if __name__ == '__main__':
     server = GameServer(str(sys.argv[1]), int(sys.argv[2]))
     server.start()
+    server.play()
     server.stop()
