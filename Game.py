@@ -24,11 +24,6 @@ class Game:
         self.players = [Player.Player(*player_one), Player.Player(*player_two)]
         self.game_board = GameBoard.GameBoard()
 
-        # TODO: Delete later
-        self.game_board.board[0].board[0] = self.game_board.board[0].board[3] \
-                = "X"
-                #= self.game_board.board[0].board[6] = "X"
-
 
     def __bool__(self):
         return self.is_running
